@@ -37,7 +37,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'formulario'  # la aplicacion que hemos creado
 ]
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
