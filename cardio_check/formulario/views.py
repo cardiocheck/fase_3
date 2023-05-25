@@ -1,17 +1,19 @@
 from django.shortcuts import render
-from .forms import ContactoForm
+from .forms import ContactoForm, InfoMedicaForm
 
 def index(request):
     if request.method == 'POST':
-        form = ContactoForm(request.POST)
-        if form.is_valid():
-            form.save()
+        form_contacto = ContactoForm(request.POST)
+        form_medico = InfoMedicaForm(request.POST)
+        if form_contacto.is_valid() and form_medico.is_valid():
+            # Procesar los datos de ambos formularios
+            # ...
             return render(request, 'formulario/confirmacion.html')
     else:
-        form = ContactoForm()
+        form_contacto = ContactoForm()
+        form_medico = InfoMedicaForm()
 
-    return render(request, 'formulario/index.html', {'form': form})
-
+    return render(request, 'formulario/index.html', {'form_contacto':form_contacto, 'form_medico':form_medico})
 
 # CONTROLADORES ADICIONALES
 def conocenos(request):

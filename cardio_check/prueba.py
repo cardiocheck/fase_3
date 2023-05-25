@@ -1,3 +1,6 @@
+# FALTA PODER IMPRIMIR LOS DATOS DE LA BASE DE DATOS
+
+
 from formulario.models import Contacto
 
 registros = Contacto.objects.all()
