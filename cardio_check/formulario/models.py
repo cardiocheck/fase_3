@@ -2,6 +2,7 @@ from django.db import models
 
 
 class Contacto(models.Model):
+
     nombre = models.CharField(max_length=50)
     apellido = models.CharField(max_length=50)
     telefono = models.CharField(max_length=9)
@@ -13,5 +14,5 @@ class Contacto(models.Model):
         return self.nombre + ' ' + self.apellido
     
     def reestablecer_password(self, nueva_password):
-        self.__password = nueva_password
+        self.password = nueva_password
         self.save()

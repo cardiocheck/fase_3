@@ -9,7 +9,7 @@ def index(request):
             return render(request, 'formulario/confirmacion.html')
     else:
         form = ContactoForm()
-    
+
     return render(request, 'formulario/index.html', {'form': form})
 
 
