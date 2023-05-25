@@ -1,19 +1,33 @@
-from django.shortcuts import render
-from .forms import ContactoForm, InfoMedicaForm
+from django.shortcuts import render, redirect
+from .forms import InfoContactoForm, InfoMedicaForm
 
-def index(request):
+def informacion_personal_view(request):
     if request.method == 'POST':
-        form_contacto = ContactoForm(request.POST)
-        form_medico = InfoMedicaForm(request.POST)
-        if form_contacto.is_valid() and form_medico.is_valid():
-            # Procesar los datos de ambos formularios
-            # ...
-            return render(request, 'formulario/confirmacion.html')
+        form = InfoContactoForm(request.POST)
+        if form.is_valid():
+            #request.session['informacion_personal'] = form.cleaned_data
+            return redirect('informacion_medica')
     else:
-        form_contacto = ContactoForm()
-        form_medico = InfoMedicaForm()
+        form = InfoContactoForm()
+    return render(request, 'formulario/informacion_personal.html', {'form': form})
 
-    return render(request, 'formulario/index.html', {'form_contacto':form_contacto, 'form_medico':form_medico})
+def informacion_medica_view(request):
+    if request.method == 'POST':
+        form = InfoMedicaForm(request.POST)
+        if form.is_valid():
+            #request.session['informacion_medica'] = form.cleaned_data
+            return redirect('confirmacion')
+    else:
+        form = InfoMedicaForm()
+    return render(request, 'formulario/informacion_medica.html', {'form': form})
+
+def gracias_view(request):
+    #informacion_personal = request.session.get('informacion_personal')
+    #informacion_medica = request.session.get('informacion_medica')
+    return render(request, 'formulario/confirmacion.html')
+
+
+
 
 # CONTROLADORES ADICIONALES
 def conocenos(request):
