@@ -14,13 +14,11 @@ class InfoContactoForm(forms.Form):
 class InfoMedicaForm(forms.Form):
 
     SEXO = ( ('option1', 'Masculino'), ('option2', 'Femenino'), ('option3', 'Otro') )
-    SI_O_NO = ( ('option1', 'Si'),('option2', 'No') )
 
     edad = forms.CharField(label='Edad', required=True)
     peso = forms.CharField(label='Peso (kg)', required=True)
     altura = forms.CharField(label='Altura (cm)', required=True)
     sexo = forms.MultipleChoiceField(choices=SEXO, widget=forms.RadioSelect, label='Sexo', required=True)
-    fumador = forms.MultipleChoiceField(choices=SI_O_NO, widget=forms.RadioSelect, label='¿Es fumador?', required=True)
-    alcoholico = forms.MultipleChoiceField(choices=SI_O_NO, widget=forms.RadioSelect, label='¿Consume alcohol?', required=True)
-    actividad_fisica = forms.MultipleChoiceField(choices=SI_O_NO, widget=forms.RadioSelect,label='¿Realiza actividad física?', required=True)
-        
+    fumador = forms.BooleanField(label='¿Es fumador?', required=False)
+    alcoholico = forms.BooleanField(label='¿Consume alcohol?', required=False)
+    actividad_fisica = forms.BooleanField(label='¿Realiza actividad física?', required=False)
